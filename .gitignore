@@ -1,3 +1,15 @@
+.DS_Store
+.idea
+desktop.ini
+application/cache/*
+!application/cache/index.html
+!application/cache/.htaccess
+
+application/logs/*
+!application/logs/index.html
+!application/logs/.htaccess
+
+
 /node_modules
 /public/hot
 /public/storage
