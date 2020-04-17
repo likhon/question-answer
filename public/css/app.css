@@ -10896,7 +10896,6 @@ a.text-dark:focus {
 
 strong {
   display: block;
-  font-size: 2em;
 }
 
 .status.unanswered {
@@ -10915,5 +10914,14 @@ strong {
 
 .view {
   margin-top: 10px;
+}
+
+.invalid-input {
+  border: 1px solid red;
+}
+
+.invalid-input-message {
+  display: block;
+  color: red;
 }
 

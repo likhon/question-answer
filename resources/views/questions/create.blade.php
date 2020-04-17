@@ -11,28 +11,31 @@
                             <div class="ml-auto">
                                 <a href="{{route('questions.index')}}" class="btn btn-outline-primary">Back to all Question</a>
                             </div>
+
                         </div>
 
                     </div>
 
                     <div class="card-body">
                         <form action="{{route('questions.store')}}" method="post">
+                            @csrf
+
                             <div class="form-group">
                                 <label for="question-title">Question Title</label>
-                                <input class="form-control {{ $errors->has('title')? 'is_invalid' : ''  }}" type="text" name="title" id="question-title">
+                                <input class="form-control {{ $errors->has('title') ? 'invalid-input' : ''  }}" type="text"  value="{{ old('title') }}" name="title" id="question-title">
 
                                 @if($errors->has('title'))
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-input-message">
                                         <strong>{{$errors->first('title')}}</strong>
                                     </div>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="question-body">Explain your question</label>
-                                <textarea rows="10" class="form-control {{ $errors->has('body')? 'is_invalid' : ''  }}" name="body" id="question-body"></textarea>
+                                <textarea rows="10" class="form-control {{ $errors->has('body')? 'invalid-input' : ''  }}"  name="body" id="question-body">{{ old('body') }}</textarea>
 
                                 @if($errors->has('body'))
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-input-message">
                                         <strong>{{$errors->first('body')}}</strong>
                                     </div>
                                 @endif
