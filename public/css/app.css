@@ -10925,3 +10925,7 @@ strong {
   color: red;
 }
 
+form.form-delete {
+  display: inline;
+}
+
