@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use League\CommonMark\CommonMarkConverter;
 
 class Question extends Model
 {
@@ -16,7 +17,7 @@ class Question extends Model
         $this->attributes['slug'] = str_slug($value);
     }
     public function getUrlAttribute(){
-        return route('questions.show', $this->id);
+        return route('questions.show', $this->slug);
     }
     public function getCreatedDateAttribute(){
         return $this->created_at->diffForHumans();
@@ -29,5 +30,16 @@ class Question extends Model
             return "answered";
         }
         return "unanswered";
+    }
+    public function getBodyHtmlAttribute(){
+//        $converter = new CommonMarkConverter([
+//            'html_input' => 'strip',
+//            'allow_unsafe_links' => false,
+//        ]);
+        $converter = new CommonMarkConverter();
+
+        return $converter->convertToHtml($this->body);
+
+
     }
 }
