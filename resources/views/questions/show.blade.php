@@ -11,16 +11,57 @@
                             <div class="ml-auto">
                                 <a href="{{route('questions.index')}}" class="btn btn-outline-primary">Back to all Question</a>
                             </div>
-
                         </div>
-
                     </div>
 
                     <div class="card-body">
                         {!!$question->body_html!!}
+                        <div class="float-right">
+                            <span class="text-muted">{{ $question->created_date }}</span>
+                            <div class="media">
+                                <a href="{{ $question->user->url }}" class="pr-2">
+                                    <img src="{{ $question->user->avatar }}">
+                                </a>
+                                <div class="media-body">
+                                    <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h2>{{ $question->answers_count. " ". str_plural("Answer",$question->answers_count) }}</h2>
+                        </div>
+                        <hr>
+                        @foreach($question->answers as $answer)
+                            <div class="media">
+                                <div class="media-body">
+                                    {!! $answer->body_html !!}
+                                    <div class="float-right">
+                                        <span class="text-muted">{{ $answer->created_date }}</span>
+                                        <div class="media">
+                                            <a href="{{ $answer->user->url }}" class="pr-2">
+                                                <img src="{{ $answer->user->avatar }}">
+                                            </a>
+                                            <div class="media-body">
+                                                <a href="{{ $answer->user->url }}">{{ $answer->user->name }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 @endsection
