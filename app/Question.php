@@ -38,5 +38,10 @@ class Question extends Model
         $converter = new CommonMarkConverter();
         return $converter->convertToHtml($this->body);
     }
+    public function acceptBestAnswer(Answer $answer){
+
+        $this->best_answer_id = $answer->id;
+        $this->save();
+    }
 
 }
