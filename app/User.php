@@ -91,6 +91,7 @@ class User extends Authenticatable
         $answer->votes_count = $upVotes + $downVotes;
         $answer->save();
     }
+  
 
 
 }
