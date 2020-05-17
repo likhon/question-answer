@@ -7,6 +7,8 @@ use League\CommonMark\CommonMarkConverter;
 
 class Answer extends Model
 {
+    use VotableTrait;
+
     protected $fillable = ['body','user_id'];
     public function question(){
         return $this->belongsTo(Question::class);
@@ -22,12 +24,8 @@ class Answer extends Model
             $answer->question->increment('answers_count');
         });
         static::deleted(function ($answer){
-//           $question = $answer->question;
            $answer->question->decrement('answers_count');
-//           if ($question->best_answer_id == $answer->id){
-//               $question->best_answer_id = NULL;
-//               $question->save();
-//           }
+
         });
     }
 
@@ -50,18 +48,5 @@ class Answer extends Model
         return $this->isBest();
     }
 
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
 
-    public function upVotes()
-    {
-        return $this->votes()->wherePivot('vote', 1);
-    }
-
-    public function downVotes()
-    {
-        return $this->votes()->wherePivot('vote', -1);
-    }
 }
