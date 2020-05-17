@@ -10969,3 +10969,15 @@ form.form-delete {
   color: #38c172;
 }
 
+.post {
+  padding: 20px 0;
+}
+
+.post:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-link {
+  margin-top: 10px !important;
+}
+
