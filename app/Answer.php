@@ -32,7 +32,7 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute(){
         $converter = new CommonMarkConverter();
-        return $converter->convertToHtml($this->body);
+        return clean($this->convertToHtml($this->body));
     }
     public function getCreatedDateAttribute(){
         return $this->created_at->diffForHumans();
