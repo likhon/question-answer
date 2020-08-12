@@ -50,6 +50,11 @@ class AnswersController extends Controller
     {
         $this->authorize('delete', $answer);
         $answer->delete();
+        if (request()->expectsJson()){
+            return response()->json([
+                'message' => 'Your Answer is deleted successfully'
+            ]);
+        }
         return back()->with('success', 'Your Answer is deleted successfully');
     }
 }
