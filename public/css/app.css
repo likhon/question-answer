@@ -11008,3 +11008,7 @@ form.form-delete {
   margin-top: 10px !important;
 }
 
+[v-cloak] {
+  display: none;
+}
+

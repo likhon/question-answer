@@ -11,7 +11,7 @@ class Answer extends Model
 
     protected $fillable = ['body','user_id'];
 
-    protected $appends = ['created_date'];
+    protected $appends = ['created_date', 'body_html', 'is_best'];
 
     public function question(){
         return $this->belongsTo(Question::class);
@@ -35,7 +35,8 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute(){
         $converter = new CommonMarkConverter();
-        return clean($this->convertToHtml($this->body));
+        //dd($converter->convertToHtml($this->body));
+        return $converter->convertToHtml($this->body);
     }
     public function getCreatedDateAttribute(){
         return $this->created_at->diffForHumans();
