@@ -35,7 +35,7 @@ class QuestionsController extends Controller
     {
 
         $request->user()->questions()->create($request->only('title','body'));
-        return redirect()->route('questions.index')->with('success', 'Your question hss been submitted');
+        return redirect()->route('questions.index')->with('success', 'Your question has been submitted');
 
 //        $check = Question::create($data);
 //        return Redirect::to("form")->withSuccess('Great! Form successfully submit with validation.');
@@ -62,7 +62,7 @@ class QuestionsController extends Controller
     public function update(AskQuestionRequest $request, Question $question)
     {
         $question->update($request->only('title','body'));
-        return redirect()->route('questions.index')->with('success', 'Your question hss been updated successfully');
+        return redirect()->route('questions.index')->with('success', 'Your question has been updated successfully');
     }
 
 
@@ -72,6 +72,6 @@ class QuestionsController extends Controller
             abort(403, "Access denied");
         }
         $question->delete();
-        return redirect()->route('questions.index')->with('success', 'Your question hss been deleted successfully');
+        return redirect()->route('questions.index')->with('success', 'Your question has been deleted successfully');
     }
 }
